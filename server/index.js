@@ -2,10 +2,10 @@ const express = require('express');
 const path = require('path')
 const App = express();
 
-
-App.get('/', function(req, res) {
-  res.end('Working')
-})
+App.use(express.static('react-client/dist'))
+// App.get('/', function(req, res) {
+//   res.end('Working')
+// })
 
 
 

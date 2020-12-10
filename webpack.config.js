@@ -5,7 +5,7 @@ var SRC_DIR = path.join(__dirname, './react-client/src')
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, 'react-client/dist'),
     filename: "bundle.js"
   },
   module: {
