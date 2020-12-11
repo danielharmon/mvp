@@ -1,30 +1,36 @@
 import React from 'react'
 
-class EditForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = props.quote
-  }
+var EditForm = (props) => {
 
-  render() {
 
     return (
       <div>
-        <h1>Hello</h1>
+        <h1></h1>
         <form>
           <label>Who said it?</label><br></br>
-          <input type="text" id="author" placeholder="Name..."value={this.state.author}onChange={(e)=>this.setState({author: e.target.value})}></input><br></br>
+          <input type="text" id="author" placeholder="Name..."value={props.state.author ? props.state.author : ''} onChange={(e) => props.onAuthorChange(e)}></input><br></br>
           <label>What'd they say?</label><br></br>
-          <input type="text" id="quote" placeholder="Quote..." value={this.state.quote}onChange={(e)=>this.setState({quote: e.target.value})}></input><br></br>
+          <input type="text" id="quote" placeholder="Quote..." value={props.state.quote ? props.state.quote : ''}onChange={(e) => props.onQuoteChange(e)}></input><br></br>
           <label>Explain the circumstances</label><br></br>
-          <input type="text" id="context" placeholder="Context..." value={this.state.context}onChange={(e)=>this.setState({context: e.target.value})}></input><br></br>
+          <input type="text" id="context" placeholder="Context..." value={props.state.context ? props.state.context : ''}onChange={(e)=> props.onContextChange(e)}></input><br></br>
           <label>Attach comma serarated tags</label><br></br>
-          <input type="text" id="tags" placeholder="funny, inspirational, children" value={this.state.tags.join(',')}onChange={(e)=>this.setState({tags: e.target.value.split(',')})}></input><br></br>
+          <input type="text" id="tags" placeholder="funny, inspirational, children" value={props.state.tags ? props.state.tags.join(',') : ''}onChange={(e)=> props.onTagsChange(e)}></input><br></br>
           <br></br>
-          <input type="submit" id="submit" onClick={(e) => props.onClick(e, this.state)} value={'Edit'}></input>
+          <input type="submit" id="submit" onClick={(e) => {
+            e.preventDefault();
+            e.target.value === 'Edit' ? props.onEditClick() : props.onCreateClick()}} value={props.state._id ? 'Edit' : 'Create'}></input>
+          <input type="submit" onClick={(e) => {
+            if (props.state._id) {
+              e.preventDefault();
+              props.onDelete()
+            }
+          }}value="Delete"></input>
+          <input type="submit" value="Clear" onClick={(e)=> {
+            e.preventDefault()
+            props.onNewClick()}}></input>
         </form>
       </div>)
-  }
+
 }
 
 export default EditForm

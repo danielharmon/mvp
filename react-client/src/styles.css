@@ -1,0 +1,9 @@
+body {
+  background-color: cadetblue
+}
+.navbar {
+  background-color: chocolate;
+}
+.active {
+  background-color: chartreuse
+}
