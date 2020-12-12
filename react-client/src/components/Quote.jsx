@@ -2,11 +2,11 @@ import React from 'react'
 
 var Quote = (props) => {
   return (
-    <div onClick={() => props.onClick({...props.quote})}>
+    <div className="Quotes" onClick={() => props.onClick({...props.quote})}>
       <div className="author">{props.quote.author}</div>
-      <div>{props.quote.quote}</div>
-      <div>{props.quote.context}</div>
-      <div>{props.quote.tags}</div>
+      <div className="quote">{props.quote.quote}</div>
+      <div className="tags">{props.quote.tags.join(',')}</div>
+      <div className="context">{props.quote.context}</div>
     </div>
   )
 }

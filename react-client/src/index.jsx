@@ -46,8 +46,6 @@ class App extends React.Component {
     this.setState({currentQuote: quote})
   }
   onDeleteClick() {
-    console.log('DeleteClick')
-    console.log(this.state.currentQuote)
     axios({
       method: 'DELETE',
       url: "/quotes",
@@ -59,7 +57,6 @@ class App extends React.Component {
       })
   }
   onCreateClick() {
-    console.log('CreateClicked')
     axios({
       method: 'POST',
       url: '/quotes',
@@ -70,8 +67,6 @@ class App extends React.Component {
     this.onNewClick();
   }
   onEditClick() {
-    console.log('EditClicked'
-    )
     axios({
       method: 'PATCH',
       url: '/quotes',
@@ -121,13 +116,13 @@ class App extends React.Component {
 
   render() {
     var filteredQuotes = this.state.quotes.filter(quote => {
-      return quote.author.includes(this.state.currentQuote.author) && quote.quote.includes(this.state.currentQuote.quote);
+      return quote.author.includes(this.state.currentQuote.author) && quote.quote.includes(this.state.currentQuote.quote) && quote.context.includes(this.state.currentQuote.context) && quote.tags.join(',').includes(this.state.currentQuote.tags.join(','));
       })
     return (
       <div>
-        <div className="navbar">
+        {/* <div className="navbar">
           <button id="Quotes" onClick={(e)=>this.onTabClick(e)}>Quotes</button><button id="Edit" className="active"onClick={(e)=> this.onTabClick(e)}>Edit</button>
-        </div>
+        </div> */}
         <EditForm onTagsChange={this.onTagsChange} onContextChange={this.onContextChange}onQuoteChange={this.onQuoteChange}onAuthorChange={this.onAuthorChange}onCreateClick={this.onCreateClick} onEditClick={this.onEditClick} onDelete={this.onDeleteClick}state={this.state.currentQuote} onNewClick={this.onNewClick} />
        <QuotesList onClick={this.onQuoteClick} quotes={filteredQuotes} />
       </div>
